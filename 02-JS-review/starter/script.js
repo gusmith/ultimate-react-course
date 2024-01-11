@@ -142,3 +142,104 @@ function getBooks() {
 function getBook(id) {
   return data.find((d) => d.id === id);
 }
+
+// Destructring
+
+const book = getBook(1);
+
+const { title, author, pages, genres } = book;
+
+const [primaryGenre, secondaryGenre, ...otherGenres] = genres;
+
+const newGenres = [...genres, "epic fantasy"];
+
+const updatedBook = {
+  ...book,
+  moviePublicationDate: "2001-12-19",
+  pages: 1210,
+};
+updatedBook;
+
+const summary = `${title}, a ${pages}-page long is a book`;
+
+const pagesRange = pages > 1000 ? "over a thousand" : "less than a thousand";
+
+// arrow function
+const getYear = (str, a, b) => {
+  return str.split("-")[0];
+};
+// const getYear = (str) => str.split("-")[0];
+// function getYear(str) {
+//   return str.split("-")[0];
+// }
+
+// Shortcutting
+console.log(true && "Some String"); // print "Some String"
+console.log(false && "some string"); // print false
+console.log(0 && "some string"); // print 0
+//falsy: 0, '', null, undefined
+
+console.log(true || "Some string"); // true
+console.log(false || "Some string"); // print Some string
+// Convenitent for default values
+const spanishTranslation = book.translations.spanish || "NOT TRANSLATED";
+
+// Be aware that 0 is a falsy, so
+
+const count = book.reviews.librarything.reviewsCount ?? "not data";
+// Falsy for ?? is only null and undefined
+
+function getTotalReviewCount(book) {
+  // Doing optional chaining
+  const goodRead = book?.reviews?.goodRead?.reviewsCount ?? 0;
+  const librarything = book?.reviews?.librarything?.reviewsCount ?? 0;
+  return goodRead + librarything;
+}
+
+// map, filter and reduce
+const books = getBooks();
+const titles = books.map((book) => book.title);
+const essentialData = books.map((book) => ({
+  title: book.title,
+  author: book.author,
+}));
+
+const longBooks = books.filter((book) => book.pages > 500);
+const adventureBooks = books.filter((book) =>
+  book.genres.includes("adventure")
+);
+
+const pagesAllBooks = books.reduce((acc, book) => acc + book.pages, 0);
+
+const arr = [3, 7, 1];
+const sorted = arr.slice().sort((a, b) => a - b); // asc order, b-a would be descending, slice makes a copy, otherwise change in place.
+
+const sortByPages = books.slice().sort((a, b) => b.pages - a.pages);
+
+// Working with immutable arrays
+// Add a book object
+const newBook = {
+  id: 6,
+  title: "Something",
+  author: "Me",
+};
+const booksAfterAdd = [...books, newBook];
+//delete a book from array => use filter
+const booksAfterDelete = booksAfterAdd.filter((book) => book.id !== 3);
+// update a book object in the array
+const bookAfterUpdate = booksAfterDelete.map((book) =>
+  book.id === 1 ? { ...book, pages: 12 } : book
+);
+
+// promises
+fetch("https://jsonplaceholder.typicode.com/todos/1")
+  .then((res) => res.json())
+  .then((data) => console.log(data));
+
+async function getTodo() {
+  const res = await fetch("https://jsonplaceholder.typicode.com/todos/1");
+  const data = await res.json();
+  return data;
+}
+
+const toDo = await getTodo();
