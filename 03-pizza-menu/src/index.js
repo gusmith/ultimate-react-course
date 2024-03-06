@@ -67,18 +67,20 @@ function Header() {
 
 function Menu() {
   const pizzas = pizzaData;
-  const numPizzas = pizzas.length > 0;
+  const numPizzas = pizzas.length;
 
   return (
     <main className="menu">
       <h2>Our menu</h2>
 
-      {numPizzas && (
+      {numPizzas > 0 ? (
         <ul className="pizzas">
           {pizzas.map((pizza) => (
             <Pizza pizzaObj={pizza} key={pizza.name} />
           ))}
         </ul>
+      ) : (
+        <p>No pizza available</p>
       )}
     </main>
   );
@@ -112,11 +114,15 @@ function Footer() {
   // return React.createElement("footer", null, "We're currently open!");
   return (
     <footer className="footer">
-      {isOpen && (
+      {isOpen ? (
         <div className="order">
           <p>We're open until {closeHour}:00. Come visit us or order online.</p>
           <button className="btn">Order</button>
         </div>
+      ) : (
+        <p>
+          We're happy to welcome you between {openHour}:00 and {closeHour}:00.
+        </p>
       )}
     </footer>
   );
