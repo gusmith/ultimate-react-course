@@ -8,3 +8,11 @@ Here are some resources that you might find helpful while studying this Part 1.
 - [Create React App](https://create-react-app.dev/?ref=jonas.io) (This is how we'll setup our first app)
 - [Vite](https://vitejs.dev/guide/?ref=jonas.io): Getting Started (For real-world React apps)
 - [Adding React URL to an HTML Document](https://gist.githubusercontent.com/gaearon/0275b1e1518599bbeafcde4722e79ed1/raw/db72dcbf3384ee1708c4a07d3be79860db04bff0/example.html) (For the "Pure React" lecture)
+
+# Practical guidelines
+
+- use state vars for any data that the component should keep track of ("remember") over time. This is the data that wwill change at some point.
+- whener you want something in the component to be dynamic, create a piece of state related to that thing. Update the state when the thing should change
+- if you want to change the way a component looks, or the data it displays, update its state. This usually happens in an event handller function.
+- when building a component, imagine its view as a reflection of state changing over time
+- for data that should not trigger component re-renders, don't use states. Use a regular variable instead. This is a common beginner mistake.
