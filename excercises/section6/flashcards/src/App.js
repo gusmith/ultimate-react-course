@@ -1,4 +1,5 @@
 import "./styles.css";
+import { useState } from "react";
 
 export default function App() {
   return (
@@ -12,36 +13,68 @@ const questions = [
   {
     id: 3457,
     question: "What language is React based on?",
-    answer: "JavaScript"
+    answer: "JavaScript",
   },
   {
     id: 7336,
     question: "What are the building blocks of React apps?",
-    answer: "Components"
+    answer: "Components",
   },
   {
     id: 8832,
     question: "What's the name of the syntax we use to describe a UI in React?",
-    answer: "JSX"
+    answer: "JSX",
   },
   {
     id: 1297,
     question: "How to pass data from parent to child components?",
-    answer: "Props"
+    answer: "Props",
   },
   {
     id: 9103,
     question: "How to give components memory?",
-    answer: "useState hook"
+    answer: "useState hook",
   },
   {
     id: 2002,
     question:
       "What do we call an input element that is completely synchronised with state?",
-    answer: "Controlled element"
-  }
+    answer: "Controlled element",
+  },
 ];
 
 function FlashCards() {
-  return <div>TODO</div>;
+  const [selectedId, setSelectedId] = useState(0);
+  return (
+    <div className="flashcards">
+      {questions.map((question) => (
+        <button
+          onClick={(e) => {
+            e.preventDefault();
+            if (question.id === selectedId) {
+              setSelectedId(0);
+            } else {
+              setSelectedId(question.id);
+            }
+          }}
+        >
+          <FlashCard
+            selectedId={selectedId}
+            id={question.id}
+            question={question.question}
+            answer={question.answer}
+          />
+        </button>
+      ))}
+    </div>
+  );
+}
+
+function FlashCard({ selectedId, id, question, answer }) {
+  const selected = selectedId === id;
+  return (
+    <div className={selected ? "selected" : ""}>
+      {selected ? answer : question}
+    </div>
+  );
 }
