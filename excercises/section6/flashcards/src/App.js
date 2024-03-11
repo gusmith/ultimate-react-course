@@ -44,37 +44,27 @@ const questions = [
 ];
 
 function FlashCards() {
-  const [selectedId, setSelectedId] = useState(0);
+  const [selectedId, setSelectedId] = useState(null);
   return (
     <div className="flashcards">
       {questions.map((question) => (
-        <button
+        <div
+          key={question.id}
+          className={selectedId === question.id ? "selected" : ""}
           onClick={(e) => {
             e.preventDefault();
             if (question.id === selectedId) {
-              setSelectedId(0);
+              setSelectedId(null);
             } else {
               setSelectedId(question.id);
             }
           }}
         >
-          <FlashCard
-            selectedId={selectedId}
-            id={question.id}
-            question={question.question}
-            answer={question.answer}
-          />
-        </button>
+          <p>
+            {selectedId === question.id ? question.answer : question.question}
+          </p>
+        </div>
       ))}
-    </div>
-  );
-}
-
-function FlashCard({ selectedId, id, question, answer }) {
-  const selected = selectedId === id;
-  return (
-    <div className={selected ? "selected" : ""}>
-      {selected ? answer : question}
     </div>
   );
 }
