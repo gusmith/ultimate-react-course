@@ -47,7 +47,7 @@ function Accordion({ data }) {
 function AccordionItem({ curOpen, onOpen, num, title, children }) {
   const isOpen = curOpen === num;
   function handleToggle() {
-    isOpen ? onOpen(null) : onOpen(num);
+    onOpen(isOpen ? null : num);
   }
 
   return (
