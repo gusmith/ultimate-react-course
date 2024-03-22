@@ -4,18 +4,19 @@ export default function App() {
   const [bill, setBill] = useState(0);
   const [myPercentage, setMyPercentage] = useState(0);
   const [friendPercentage, setFriendPercentage] = useState(0);
+
   return (
     <div>
-      <BillInput bill={bill} handleBill={setBill} />
+      <BillInput bill={bill} onSetBill={setBill} />
       <SelectPercentage
         text="How did you like the service?"
         percentage={myPercentage}
-        setPercentage={setMyPercentage}
+        onSetPercentage={setMyPercentage}
       />
       <SelectPercentage
         text="How did your friend like the service?"
         percentage={friendPercentage}
-        setPercentage={setFriendPercentage}
+        onSetPercentage={setFriendPercentage}
       />
       <Output
         bill={bill}
@@ -23,7 +24,7 @@ export default function App() {
         percentage2={friendPercentage}
       />
       <Reset
-        handleReset={() => {
+        onReset={() => {
           setBill(0);
           setMyPercentage(0);
           setFriendPercentage(0);
@@ -33,7 +34,7 @@ export default function App() {
   );
 }
 
-function BillInput({ bill, handleBill }) {
+function BillInput({ bill, onSetBill }) {
   return (
     <div>
       How much was the bill?
@@ -41,19 +42,19 @@ function BillInput({ bill, handleBill }) {
         value={bill}
         type="number"
         min="0"
-        onChange={(e) => handleBill(Number(e.target.value))}
+        onChange={(e) => onSetBill(Number(e.target.value))}
       ></input>
     </div>
   );
 }
 
-function SelectPercentage({ text, percentage, setPercentage }) {
+function SelectPercentage({ text, percentage, onSetPercentage }) {
   return (
     <div>
       {text}
       <select
         value={percentage}
-        onChange={(e) => setPercentage(Number(e.target.value))}
+        onChange={(e) => onSetPercentage(Number(e.target.value))}
       >
         <option value="0">Dissatisfied (0%)</option>
         <option value="5">It was OK (5%)</option>
@@ -67,14 +68,12 @@ function SelectPercentage({ text, percentage, setPercentage }) {
 function Output({ bill, percentage1, percentage2 }) {
   const tip = (bill * (percentage1 + percentage2)) / 200;
   return (
-    <div>
-      <b>
-        You pay ${bill + tip} (${bill} + %{tip} tip)
-      </b>
-    </div>
+    <h3>
+      You pay ${bill + tip} (${bill} + %{tip} tip)
+    </h3>
   );
 }
 
-function Reset({ handleReset }) {
-  return <button onClick={handleReset}>Reset</button>;
+function Reset({ onReset }) {
+  return <button onClick={ononSetPercentageReset}>Reset</button>;
 }
