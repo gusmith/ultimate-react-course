@@ -18,18 +18,23 @@ export default function App() {
         percentage={friendPercentage}
         onSetPercentage={setFriendPercentage}
       />
-      <Output
-        bill={bill}
-        percentage1={myPercentage}
-        percentage2={friendPercentage}
-      />
-      <Reset
-        onReset={() => {
-          setBill(0);
-          setMyPercentage(0);
-          setFriendPercentage(0);
-        }}
-      />
+
+      {bill > 0 && (
+        <>
+          <Output
+            bill={bill}
+            percentage1={myPercentage}
+            percentage2={friendPercentage}
+          />
+          <Reset
+            onReset={() => {
+              setBill(0);
+              setMyPercentage(0);
+              setFriendPercentage(0);
+            }}
+          />
+        </>
+      )}
     </div>
   );
 }
@@ -75,5 +80,5 @@ function Output({ bill, percentage1, percentage2 }) {
 }
 
 function Reset({ onReset }) {
-  return <button onClick={ononSetPercentageReset}>Reset</button>;
+  return <button onClick={onReset}>Reset</button>;
 }
