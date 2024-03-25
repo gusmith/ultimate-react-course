@@ -56,3 +56,11 @@ Here are some resources that you might find helpful while studying this Part 1.
 - [So you think you know everything about React refs](https://blog.thoughtspile.tech/2021/05/17/everything-about-react-refs/?ref=jonas.io)
 - [react-use: Reusable React Hook Library](https://github.com/streamich/react-use?ref=jonas.io) (GitHub repository)
 - [react-hookz: React hooks done right](https://github.com/react-hookz/web?ref=jonas.io) (GitHub repository)
+
+## Notes
+
+When in doubt, start with a big component, then split into smaller
+1. logical speration of content/layout
+2. resuaabilty
+3. responsibilities/complexity
+4. personal coding style
