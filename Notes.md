@@ -1,5 +1,24 @@
 # Part 1
 
+## VSCode setup
+
+Plugin list:
+- ESLint
+- Prettier - Code formatter
+- One Monokai (colour scheme)
+- Material Icon Theme
+
+Settings:
+- auto save
+- default formatter -> prettier
+- eslint run -> on save
+
+
+### Snippets
+
+## Webbrowser setup
+React Developer Tools
+
 ## Links
 
 Here are some resources that you might find helpful while studying this Part 1.
