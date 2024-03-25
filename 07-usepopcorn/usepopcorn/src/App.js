@@ -131,7 +131,7 @@ function Movie({ movie }) {
   );
 }
 
-function WatchBox() {
+function WatchedBox() {
   const [watched, setWatched] = useState(tempWatchedData);
   const [isOpen2, setIsOpen2] = useState(true);
 
@@ -220,7 +220,7 @@ function Main({ movies }) {
   return (
     <main className="main">
       <ListBox movies={movies} />
-      <WatchBox />
+      <WatchedBox />
     </main>
   );
 }
