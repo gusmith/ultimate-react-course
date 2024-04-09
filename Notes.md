@@ -61,6 +61,9 @@ Here are some resources that you might find helpful while studying this Part 1.
 
 When in doubt, start with a big component, then split into smaller
 1. logical speration of content/layout
-2. resuaabilty
+2. reusabilty
 3. responsibilities/complexity
 4. personal coding style
+
+About rendering and commiting:
+![Render and commit](./images/RenderCommit.png)
