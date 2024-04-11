@@ -67,3 +67,13 @@ When in doubt, start with a big component, then split into smaller
 
 About rendering and commiting:
 ![Render and commit](./images/RenderCommit.png)
+
+`useEffect` to handle side effects in the render logic. Important not to foget the dependency array in the method.
+
+side effect e.g:
+- data fetching
+- setting up subscriptions
+- setting up timeers
+- manually accessing the DOM
+
+effect can run at different moments. Used to keep a component synchornized with some external system.
