@@ -231,7 +231,6 @@ function MovieDetails({ selectedId, watched, onCloseMovie, onAddWatched }) {
       // Cleanup function
       return function () {
         document.title = "usePopcorn";
-        console.log(`Clean up effect for movie ${title}`);
       };
     },
     [title]
@@ -242,7 +241,6 @@ function MovieDetails({ selectedId, watched, onCloseMovie, onAddWatched }) {
       function callback(e) {
         if (e.code === "Escape") {
           onCloseMovie();
-          console.log("CLOSING");
         }
       }
       document.addEventListener("keydown", callback);
@@ -313,7 +311,7 @@ export default function App() {
   const [watched, setWatched] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState("");
-  const [query, setQuery] = useState("inception");
+  const [query, setQuery] = useState("");
   const [selectedId, setSelectedId] = useState(null);
 
   function handleSelectMovie(id) {
@@ -332,23 +330,7 @@ export default function App() {
     setWatched((w) => w.filter((m) => m.imdbId !== id));
   }
 
-  useEffect(function () {
-    console.log("After initial render");
-  }, []);
-
-  useEffect(function () {
-    console.log("After every render");
-  });
-
-  useEffect(
-    function () {
-      console.log("After initial render and query state updated");
-    },
-    [query]
-  );
-
-  console.log("During render");
-
+  // Could be transformed into an event handler.
   useEffect(
     function () {
       const controller = new AbortController();
@@ -374,7 +356,6 @@ export default function App() {
           setMovies(data.Search);
           setError("");
         } catch (err) {
-          console.log(err.message);
           if (err.name !== "AbortError") {
             setError(err.message);
           }
@@ -387,6 +368,8 @@ export default function App() {
         setError("");
         return;
       }
+
+      handleCloseMovie();
       fetchMovies();
       return function () {
         controller.abort();
