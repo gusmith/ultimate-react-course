@@ -100,3 +100,6 @@ Rules of hooks:
 1. only call hooks from React function (only called in function component or in custom hook).
 
 But React ESLint enforces these rules.
+
+useState summary:
+![useState](./images/UseState.png)
