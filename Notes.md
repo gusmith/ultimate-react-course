@@ -32,11 +32,13 @@ Here are some resources that you might find helpful while studying this Part 1.
 
 ## Practical guidelines
 
-- use state vars for any data that the component should keep track of ("remember") over time. This is the data that wwill change at some point.
+- use state vars for any data that the component should keep track of ("remember") over time. This is the data that will change at some point.
 - whener you want something in the component to be dynamic, create a piece of state related to that thing. Update the state when the thing should change
 - if you want to change the way a component looks, or the data it displays, update its state. This usually happens in an event handller function.
 - when building a component, imagine its view as a reflection of state changing over time
-- for data that should not trigger component re-renders, don't use states. Use a regular variable instead. This is a common beginner mistake.
+- for data that should not trigger component re-renders, don't use states. Use a regular variable instead or use refs. This is a common beginner mistake.
+
+![Refs vs States](./images/RefsVsStates.png)
 
 # Part 2
 
