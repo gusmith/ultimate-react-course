@@ -3,20 +3,22 @@
 ## VSCode setup
 
 Plugin list:
+
 - ESLint
 - Prettier - Code formatter
 - One Monokai (colour scheme)
 - Material Icon Theme
 
 Settings:
+
 - auto save
 - default formatter -> prettier
 - eslint run -> on save
 
-
 ### Snippets
 
 ## Webbrowser setup
+
 React Developer Tools
 
 ## Links
@@ -60,6 +62,7 @@ Here are some resources that you might find helpful while studying this Part 1.
 ## Notes
 
 When in doubt, start with a big component, then split into smaller
+
 1. logical speration of content/layout
 2. reusabilty
 3. responsibilities/complexity
@@ -71,9 +74,29 @@ About rendering and commiting:
 `useEffect` to handle side effects in the render logic. Important not to foget the dependency array in the method.
 
 side effect e.g:
+
 - data fetching
 - setting up subscriptions
 - setting up timeers
 - manually accessing the DOM
 
 effect can run at different moments. Used to keep a component synchornized with some external system.
+
+List of hooks a bit used:
+
+- useState
+- useEffect
+- useReducer
+- useContext
+- useRef
+- useCallback
+- useMemo
+- useTransition
+- useDeferredValue
+
+Rules of hooks:
+
+1. only be called at the top level (not in conditionals, loops, nested function, or after an early return, ensure that hooks always called in the same order)
+1. only call hooks from React function (only called in function component or in custom hook).
+
+But React ESLint enforces these rules.
