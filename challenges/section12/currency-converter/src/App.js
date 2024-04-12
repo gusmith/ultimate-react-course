@@ -41,8 +41,8 @@ export default function App() {
           setIsLoading(false);
         }
       }
-      if (!input || from === to) {
-        setOutput(null);
+      if (from === to) {
+        setOutput(input);
         return;
       }
       fecthing();
