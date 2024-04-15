@@ -105,3 +105,28 @@ But React ESLint enforces these rules.
 
 useState summary:
 ![useState](./images/UseState.png)
+
+# Part 3
+
+## Links
+
+- [Tao of React - Software design, Archjitecture and Best Practices](https://alexkondov.com/tao-of-react/?ref=jonas.io)
+- [The new wave of React state management](https://frontendmastery.com/posts/the-new-wave-of-react-state-management/?ref=jonas.io)
+- [A Visual Guide to React Rendering - useMemo](https://alexsidorenko.com/blog/react-render-usememo?ref=jonas.io)
+- [React as a UI Runtime](https://overreacted.io/react-as-a-ui-runtime/?ref=jonas.io) (By Dan Abramov from the React team)
+- [You Might Not Need an Effect](https://react.dev/learn/you-might-not-need-an-effect?ref=jonas.io) (Official React docs)
+- [A Complete Guide to useEffect](https://overreacted.io/a-complete-guide-to-useeffect/?ref=jonas.io)
+- [useEffect sometimes fires before paint](https://blog.thoughtspile.tech/2021/11/15/unintentional-layout-effect/?ref=jonas.io)
+- [Making setInterval Declarative with React Hooks](https://overreacted.io/making-setinterval-declarative-with-react-hooks/?ref=jonas.io)
+- [Redux - Not Dead Yet!](https://blog.isquaredsoftware.com/2018/03/redux-not-dead-yet/?ref=jonas.io)
+- [Why React Context is Not a "State Management" Tool](https://blog.isquaredsoftware.com/2021/01/context-redux-differences/)
+
+### Library documentation
+
+- [Vite](https://vitejs.dev/guide/why.html)
+- [CSS Modules](https://github.com/css-modules/css-modules)
+- [React Router](https://reactrouter.com/en/main?ref=jonas.io)
+- [React Leaflet: Installation](https://react-leaflet.js.org/docs/start-installation/?ref=jonas.io)
+- [Redux: Style Guide](https://redux.js.org/style-guide/?ref=jonas.io) (A must-read for Redux users!)
+- [Redux Toolkit](https://redux-toolkit.js.org/tutorials/overview?ref=jonas.io)
+- [React Redux](https://react-redux.js.org/api/hooks?ref=jonas.io)
