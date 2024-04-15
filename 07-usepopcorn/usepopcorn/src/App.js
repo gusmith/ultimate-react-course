@@ -1,5 +1,6 @@
 import { useEffect, useRef, useState } from "react";
 import StarRating from "./StarRating";
+import { useMovies } from "./useMovies";
 
 const average = (arr) =>
   arr.reduce((acc, cur, i, arr) => acc + cur / arr.length, 0);
@@ -192,6 +193,17 @@ function MovieDetails({ selectedId, watched, onCloseMovie, onAddWatched }) {
   const [isLoading, setIsLoading] = useState(false);
   const [userRating, setUserRating] = useState(0);
 
+  const countRef = useRef(0);
+
+  useEffect(
+    function () {
+      if (userRating) {
+        countRef.current += 1;
+      }
+    },
+    [userRating]
+  );
+
   const isWatched = watched.map((w) => w.imdbId).includes(selectedId);
   const watchedUserRating = watched.find(
     (w) => w.imdbId === selectedId
@@ -219,6 +231,7 @@ function MovieDetails({ selectedId, watched, onCloseMovie, onAddWatched }) {
       imdbRating: Number(imdbRating),
       runtime: runtime?.split(" ").at(0),
       userRating,
+      countRatingDecisions: countRef.current,
     };
 
     onAddWatched(newWatchedMovie);
@@ -326,11 +339,10 @@ function MovieDetails({ selectedId, watched, onCloseMovie, onAddWatched }) {
 }
 
 export default function App() {
-  const [movies, setMovies] = useState([]);
-  const [isLoading, setIsLoading] = useState(false);
-  const [error, setError] = useState("");
   const [query, setQuery] = useState("");
   const [selectedId, setSelectedId] = useState(null);
+
+  const { movies, error, isLoading } = useMovies(query);
 
   // const [watched, setWatched] = useState([]);
   const [watched, setWatched] = useState(function () {
@@ -355,52 +367,6 @@ export default function App() {
   }
 
   // Could be transformed into an event handler.
-  useEffect(
-    function () {
-      const controller = new AbortController();
-
-      async function fetchMovies() {
-        try {
-          setError("");
-          setIsLoading(true);
-          const res = await fetch(
-            `https://www.omdbapi.com/?apikey=${process.env.REACT_APP_OMDB_API_KEY}&s=${query}`,
-            { signal: controller.signal }
-          );
-          if (!res.ok) {
-            throw new Error("Somtheing went wrong with fethcing movies.");
-          }
-
-          const data = await res.json();
-
-          if (data.Response === "False") {
-            throw new Error("Movie not found");
-          }
-
-          setMovies(data.Search);
-          setError("");
-        } catch (err) {
-          if (err.name !== "AbortError") {
-            setError(err.message);
-          }
-        } finally {
-          setIsLoading(false);
-        }
-      }
-      if (query.length < 3) {
-        setMovies([]);
-        setError("");
-        return;
-      }
-
-      handleCloseMovie();
-      fetchMovies();
-      return function () {
-        controller.abort();
-      };
-    },
-    [query]
-  );
 
   useEffect(
     function () {
