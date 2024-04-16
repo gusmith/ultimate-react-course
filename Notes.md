@@ -130,3 +130,9 @@ useState summary:
 - [Redux: Style Guide](https://redux.js.org/style-guide/?ref=jonas.io) (A must-read for Redux users!)
 - [Redux Toolkit](https://redux-toolkit.js.org/tutorials/overview?ref=jonas.io)
 - [React Redux](https://react-redux.js.org/api/hooks?ref=jonas.io)
+
+## Why reducer?
+
+1. when components have a lot of state variables
+1. when multiple state updates need to happen at the same time
+1. when updating one piece of state depends on one or multiple other piece of state
