@@ -8,6 +8,7 @@ Plugin list:
 - Prettier - Code formatter
 - One Monokai (colour scheme)
 - Material Icon Theme
+- Auto Rename Tag
 
 Settings:
 
