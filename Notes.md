@@ -137,3 +137,7 @@ useState summary:
 1. when components have a lot of state variables
 1. when multiple state updates need to happen at the same time
 1. when updating one piece of state depends on one or multiple other piece of state
+
+## When to use a reducer
+
+![WhenToUseAReducer](./images/WhenToUseReducer.png)
