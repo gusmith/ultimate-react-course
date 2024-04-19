@@ -16,7 +16,10 @@ Settings:
 - default formatter -> prettier
 - eslint run -> on save
 
-### Snippets
+### VS Code Snippets
+
+Some interesting ones in the [file](./00-setup/snippets.json)
+Most inetersting one is the `rfc` one creating the default component function using the file name.
 
 ## Webbrowser setup
 
@@ -141,3 +144,12 @@ useState summary:
 ## When to use a reducer
 
 ![WhenToUseAReducer](./images/WhenToUseReducer.png)
+
+## Routers
+
+Most used third party library: react-router
+Single page applicatiob, never a hard reload.
+
+## Styles in React
+
+![styles](./images/StylingOptions.png)
