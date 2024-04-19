@@ -1,0 +1,14 @@
+.nav {
+  background-color: orangered;
+}
+
+.nav ul {
+  list-style: none;
+  display: flex;
+  justify-content: space-between;
+}
+
+/* To make the active css class global */
+.nav :global(.active) {
+  background-color: green;
+}
