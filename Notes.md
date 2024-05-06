@@ -172,3 +172,23 @@ Great for UI state instead of useState.
 1. Consumers: all components that read the provided context `value`
 
 When a value is updated, all consumers are re-rendered.
+
+## Types of state
+
+1. State accessibility (if this component was rendered twice, should a state update in one of them reflect in the other one? No -> local, Yes -> global):
+   1. Local: one or few components, maybe in component and child compoenents
+   1. Global: needed by many components, accessible to every component of the application
+1. State domain
+   1. Remote state: data loaded from a remote server, suaully asynchronous, needs re-fecthing + updating
+   1. UI state: everything else, theme, list filters, form data, etc. Usually synchronous and stored in the application
+
+| Where to place the state | Tools                                  | When to use?                        |
+| ------------------------ | -------------------------------------- | ----------------------------------- |
+| Local component          | useState, useReducer or useRef         | local state                         |
+| Parent component         | useState, useReducer or useRef         | localifting up state                |
+| Context                  | Context API + useState or useReducer   | Global stat (preferably UI state)   |
+| 3rd-party library        | redux, React Query, SWR, Zustand, etc. | Global state (remote or UI)         |
+| URL                      | React router                           | Global state, passing between pages |
+| Browser                  | Local storage, session storage, etc    | Storing data in user's browser      |
+
+![StateManagementToolOptions](./images/StateManagementToolOptions.png)
