@@ -153,3 +153,11 @@ Single page applicatiob, never a hard reload.
 ## Styles in React
 
 ![styles](./images/StylingOptions.png)
+
+## State in URLs
+
+Great for UI state instead of useState.
+
+1. Easy way to store state in aglobal place, accessible to all components in the app
+1. Good way to "pass" data from one page to another
+1. Makes it possible to bookmark and share the page with the exact UI state it had at that time
