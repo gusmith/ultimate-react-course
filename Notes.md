@@ -161,3 +161,14 @@ Great for UI state instead of useState.
 1. Easy way to store state in aglobal place, accessible to all components in the app
 1. Good way to "pass" data from one page to another
 1. Makes it possible to bookmark and share the page with the exact UI state it had at that time
+
+## Context API
+
+- System to pass data throughout the app without manually assing pros downthe triee
+- Allows us to "broadcast" global state to the entire app
+
+1. Provider: gives all child components access to the value
+1. value: data that we want to make available (usually state and functions)
+1. Consumers: all components that read the provided context `value`
+
+When a value is updated, all consumers are re-rendered.
