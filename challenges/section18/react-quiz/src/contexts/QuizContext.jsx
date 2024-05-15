@@ -96,26 +96,6 @@ function QuizProvider({ children }) {
     [dispatch]
   );
 
-  function restartQuiz() {
-    dispatch({ type: "restartQuiz" });
-  }
-
-  function nextQuestion() {
-    dispatch({ type: "nextQuestion" });
-  }
-
-  function finish() {
-    dispatch({ type: "finish" });
-  }
-
-  function newAnswer(index) {
-    dispatch({ type: "newAnswer", payload: index });
-  }
-
-  function start() {
-    dispatch({ type: "start" });
-  }
-
   return (
     <QuizContext.Provider
       value={{
@@ -128,11 +108,7 @@ function QuizProvider({ children }) {
         numQuestions,
         maxPossiblePoints,
         question,
-        restartQuiz,
-        nextQuestion,
-        newAnswer,
-        finish,
-        start,
+        dispatch,
       }}
     >
       {children}
