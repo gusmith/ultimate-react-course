@@ -49,18 +49,6 @@
       "id": 98443198
     },
     {
-      "cityName": "Lignieres-de-Touraine",
-      "country": "France",
-      "emoji": "🇫🇷",
-      "date": "2024-05-14T23:39:53.439Z",
-      "notes": "",
-      "position": {
-        "lat": "47.29413372501023",
-        "lng": "0.41748046875000006"
-      },
-      "id": 98443199
-    },
-    {
       "cityName": "Plaisance",
       "country": "France",
       "emoji": "🇫🇷",
@@ -71,42 +59,6 @@
         "lng": "0.5273437500000001"
       },
       "id": 98443200
-    },
-    {
-      "cityName": "Oberelsbach",
-      "country": "Germany",
-      "emoji": "🇩🇪",
-      "date": "2024-05-14T23:43:28.135Z",
-      "notes": "",
-      "position": {
-        "lat": "50.44351305245807",
-        "lng": "10.063476562500002"
-      },
-      "id": 98443201
-    },
-    {
-      "cityName": "Wriedel",
-      "country": "Germany",
-      "emoji": "🇩🇪",
-      "date": "2024-05-14T23:59:33.982Z",
-      "notes": "",
-      "position": {
-        "lat": "53.067626642387374",
-        "lng": "10.283203125000002"
-      },
-      "id": 98443202
-    },
-    {
-      "cityName": "Torcy",
-      "country": "France",
-      "emoji": "🇫🇷",
-      "date": "2024-05-15T00:00:33.906Z",
-      "notes": "",
-      "position": {
-        "lat": "46.76996843356982",
-        "lng": "4.438476562500001"
-      },
-      "id": 98443203
     }
   ]
 }
