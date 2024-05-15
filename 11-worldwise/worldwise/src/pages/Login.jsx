@@ -4,6 +4,7 @@ import PageNav from "../components/PageNav";
 import { useAuth } from "../contexts/FakeAuthContext";
 import { useNavigate } from "react-router-dom";
 import Message from "../components/Message";
+import Button from "../components/Button";
 
 export default function Login() {
   const { isAuthenticated, login } = useAuth();
@@ -18,8 +19,8 @@ export default function Login() {
   }
 
   useEffect(() => {
-    if (isAuthenticated === true) navigate("/app/cities");
-  }, [isAuthenticated]);
+    if (isAuthenticated === true) navigate("/app", { replace: true });
+  }, [isAuthenticated, navigate]);
 
   return (
     <main className={styles.login}>
@@ -46,7 +47,7 @@ export default function Login() {
         </div>
 
         <div>
-          <button>Login</button>
+          <Button type="primary">Login</Button>
         </div>
       </form>
     </main>
