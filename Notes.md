@@ -192,3 +192,45 @@ When a value is updated, all consumers are re-rendered.
 | Browser                  | Local storage, session storage, etc    | Storing data in user's browser      |
 
 ![StateManagementToolOptions](./images/StateManagementToolOptions.png)
+
+## Performance optimization tools
+
+1. Prevent wasted renders
+   - memo
+   - useMemo
+   - useCallback
+   - passing elements as children or regular prop
+1. Improve app speed/responsiveness
+   - useMemo
+   - useCallback
+   - useTransition
+1. reduce bundle size
+   - using fewer 3rd-part packages
+   - code splitting and lazy loading
+
+### Re-render
+
+A comopnent is re-redered when:
+
+- state changes
+- context changes
+- parent re-render
+
+When a prop changed, the parent provifding them re-rendered re-rendering the child.
+
+### Wasted render
+
+A render which did not produce any change in the DOM, usually no problem because react is really fast, but problem when happen too frequently, or when component is very slow.
+
+#### React plugin in browser
+
+Go in `profiler`, go in setting, `profiler` section, and enable `Record why each componsent rendered while profiling.`
+
+#### optimisation trick with children props
+
+the children prop is not re-rendered because it is own by the component creating it (adding it as a child), in fact the component creating it creates the children component before passing it down in the props.
+Because of that, a context provider does not re-render all children.
+
+### Memoization
+
+Excecute a pure function once, and saves the result in memory.
