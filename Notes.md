@@ -234,3 +234,11 @@ Because of that, a context provider does not re-render all children.
 ### Memoization
 
 Excecute a pure function once, and saves the result in memory.
+In React, we can memoize components, objects and functions.
+
+#### memo function
+
+Create a componenent that will not re-render if parent re-renders as long as props stay the same.
+By default, no memo.
+
+Memo only useful for heavy component (slow re-rendering), re-render often and does with the same props.
