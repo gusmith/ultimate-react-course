@@ -271,3 +271,24 @@ Optimise only if (all):
 #### Children prop
 
 Because the children are provided in props, they are created before the provider is created, so not re-rendered by the context changing.
+
+### Small summary
+
+Do:
+
+- find performance bottlenecks using Profiler and visual inspection (laggy UI)
+- fix those real performance issues
+- memoize expensive re-renders
+- memoize expensive calculations
+- optimise context if it has many consumers and chages often
+- memoize context value + child components
+- implement code splitting + lazy loading for SPA routes
+
+Don't:
+
+- don't optimise premnaturely
+- don't optimise anything if there is nothing to optimise
+- don't wrap all components in `memo()`
+- don't wrap all values in `useMemo()`
+- don't wrap all functions in `useCallback()`
+- don't optimise context if it is not slow and does not have many consumers
