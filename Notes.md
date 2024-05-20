@@ -292,3 +292,30 @@ Don't:
 - don't wrap all values in `useMemo()`
 - don't wrap all functions in `useCallback()`
 - don't optimise context if it is not slow and does not have many consumers
+
+## useEffect extras
+
+Dependency array rules:
+
+- every state variable, prop and context value used inside the effect MUST be included in the dependency array
+- all "reactive values" must be inlcuded (functions, or variables that reference any other reactive value)
+- dependencies choose themselves: NEVER ignore the `exhaustive-deps` ESLint rule!
+- do not use objects or arrays as dependencies (objects are recreated on each render, and React sees new objects as different: `{}!={}`)
+
+Removing unnnecessary dependency:
+
+- move function into the effect
+- memoize function out
+- move it outside the component
+- only include the property of the object you need
+- move or memoize
+- try using a reducer
+- no need to put setState, and dispatch in dependenmcy
+
+When not to use effect. An effect should be a last resort, when no other solution makes sense.
+
+3 cases where effects are overused (avoid these):
+
+- responding to a user event. An event handler function should be used instead.
+- fetching data on component mount. This is fine in small apps, but in real-world app, a library like React Query should be used
+- synchronuzing state changes with one another (settings state based on another state variable). Try to use derived state and event handlers
