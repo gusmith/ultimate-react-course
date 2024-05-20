@@ -242,3 +242,18 @@ Create a componenent that will not re-render if parent re-renders as long as pro
 By default, no memo.
 
 Memo only useful for heavy component (slow re-rendering), re-render often and does with the same props.
+
+Objects and functions can also be memoized to avoid re-rendering of a component having props:
+
+- `useMemo` to memoize objects
+- `useCallback` to memoize functions
+
+A bit like `useEffect`, they have a set of dependencies which invalidates the cache if changed.
+
+3 use cases:
+
+- memoizing props to prevent wasted renders
+- memoizeing values to avoid expensive re-calculations on every renders
+- memoizing values that are used in dependency array of another hook
+
+DO NOT OVERUSE!!!
