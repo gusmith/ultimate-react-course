@@ -257,3 +257,17 @@ A bit like `useEffect`, they have a set of dependencies which invalidates the ca
 - memoizing values that are used in dependency array of another hook
 
 DO NOT OVERUSE!!!
+
+Note that the setter function of `useState` is not recreated on re-render, so not needed to add them in `useCallback` neither in dependencies.
+
+### Context re-renders optimisation
+
+Optimise only if (all):
+
+- state iobn context change all the time
+- context has many consumers
+- app is slow and laggy
+
+#### Children prop
+
+Because the children are provided in props, they are created before the provider is created, so not re-rendered by the context changing.
