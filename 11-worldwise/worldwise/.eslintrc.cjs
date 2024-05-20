@@ -7,9 +7,17 @@ module.exports = {
     "plugin:react/jsx-runtime",
     "plugin:react-hooks/recommended",
     "react",
+    "prettier",
   ],
   ignorePatterns: ["dist", ".eslintrc.cjs"],
-  parserOptions: { ecmaVersion: "latest", sourceType: "module" },
+  parser: "@babel/eslint-parser",
+  parserOptions: {
+    sourceType: "module",
+    requireConfigFile: false,
+    babelOptions: {
+      presets: ["@babel/preset-env", "@babel/preset-react"],
+    },
+  },
   settings: { react: { version: "18.2" } },
   plugins: ["react-refresh"],
   rules: {
@@ -17,5 +25,7 @@ module.exports = {
       "warn",
       { allowConstantExport: true },
     ],
+    "react/jsx-uses-react": "off",
+    "react/react-in-jsx-scope": "off",
   },
 };
