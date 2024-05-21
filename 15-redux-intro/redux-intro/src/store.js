@@ -1,3 +1,5 @@
+import { createStore } from "redux"; // it is deprecated in favour to redux toolkit, but can be useful for older application
+
 const initialState = {
   balance: 0,
   loan: 0,
@@ -12,8 +14,12 @@ function reducer(state = initialState, action) {
       return { ...state, balance: state.balance - action.payload };
     case "account/requestLoan":
       if (state.loan > 0) return state;
-      // LATER
-      return { ...state, loan: action.payload };
+      return {
+        ...state,
+        loan: action.payload.amount,
+        loanPurpose: action.payload.loanPurpose,
+        balance: state.balance + action.payload.amount,
+      };
     case "account/payLoan":
       return {
         ...state,
@@ -26,3 +32,5 @@ function reducer(state = initialState, action) {
       return state;
   }
 }
+
+const store = createStore(reducer);
