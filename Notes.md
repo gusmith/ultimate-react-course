@@ -319,3 +319,19 @@ When not to use effect. An effect should be a last resort, when no other solutio
 - responding to a user event. An event handler function should be used instead.
 - fetching data on component mount. This is fine in small apps, but in real-world app, a library like React Query should be used
 - synchronuzing state changes with one another (settings state based on another state variable). Try to use derived state and event handlers
+
+## Redux!!!
+
+### What is redux?
+
+- 3rd party library to manage global state
+- standalone library, but easay to integrate in react with `react-redux`
+- all global state is stored in globally accessble store whic his easy to update using "actions" (like `useReducer`)
+- it is conceptually similar to Context API + `useReducer`
+- 2 versions of redux: classic redux and modern Redux
+
+Redux is for UI global states, not remote states.
+
+Mechanism of Redux: difference with useReducer: a store, and the store will have multiple reducers, and an action creator (which is optional but common for Redux applications).
+
+![Mechanism of Redux](./images/ReduxMechanism.png)
