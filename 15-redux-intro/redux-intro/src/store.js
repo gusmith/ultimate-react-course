@@ -34,3 +34,22 @@ function reducer(state = initialState, action) {
 }
 
 const store = createStore(reducer);
+
+// Convention with Redux: action creators
+function deposit(amount) {
+  return { type: "account/deposit", payload: amount };
+}
+function withdraw(amount) {
+  return { type: "account/withdraw", payload: amount };
+}
+function requestLoan(amount, loanPurpose) {
+  return {
+    type: "account/requestLoan",
+    payload: { amount: amount, loanPurpose: loanPurpose },
+  };
+}
+function payLoan() {
+  return {
+    type: "account/payLoan",
+  };
+}
