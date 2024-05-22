@@ -358,3 +358,27 @@ Gives 3 big things (but much more too):
 1. we can write code that "mutates" state inside reducers (will be converted to immutable logic behind the scenes by "Immer" library)
 1. Action creators are automaticallt created
 1. Automatic setup of thunk middleware and DevTools.
+
+### Redux vs context api
+
+| context API + `useReducer`                                                                           | Redux                                                                               |
+| ---------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------- |
+| 👍 built into react                                                                                  | 👎 requires additional pacakage (large bundle)                                      |
+| 👍 easy to setup                                                                                     | 👎 more work to setup initially                                                     |
+| 👎 additional state "slide" requires new context **set up from scratch** ("provider hell" in App.js) | 👍 once set up, it's easy to create additional state "slices"                       |
+| 👎 no mechanism for async operations (should not be used fort remote states)                         | 👍 supports middleware for async operations (should not be used fort remote states) |
+| 👎 performance optimization is a pain                                                                | 👍 performance is optimized out of the box                                          |
+| 👎 only react dev tools                                                                              | 👍 excellent dev tools                                                              |
+
+#### When to use context api + useReducer
+
+For "small" applications.
+When you just need to share a value that does not change often (e.g. color theme, preferred language, authenticated user, ...)
+When you need to solve a simple prop drillling problem.
+When you need top manage state in a local sub-tree of the app (e.g. in the compound component pattern)
+
+#### When to use Redux
+
+For "large" applications.
+When you have lots of gloabl UI state that needs to be updated frequently (because Redux is optimized for this) [shopping cart, current tabs, complex filters or search...]
+When you have complex state with nested objects and arrays (because you can mutate state with redux toolkit)
