@@ -382,3 +382,28 @@ When you need top manage state in a local sub-tree of the app (e.g. in the compo
 For "large" applications.
 When you have lots of gloabl UI state that needs to be updated frequently (because Redux is optimized for this) [shopping cart, current tabs, complex filters or search...]
 When you have complex state with nested objects and arrays (because you can mutate state with redux toolkit)
+
+# Part 4
+
+## Useful resources
+
+Here are some high-quality resources that you might find helpful while studying this Part 4. (The list follows the order of sections in this part)
+
+These resources are 100% optional, but might give you additional insights or provide ever deeper dives into some topics.
+
+- [React Libraries for 2023](https://www.robinwieruch.de/react-libraries/?ref=jonas.io) (Written in 2023, but will be up-to-date for years, as the ecosystem is relatively stable now)
+- [Styled-components best practices](https://www.joshwcomeau.com/css/styled-components/?ref=jonas.io) (By the excellent writer and educator Josh W. Comeau)
+- [A Thorough Analysis of CSS-in-JS](https://css-tricks.com/a-thorough-analysis-of-css-in-js/?ref=jonas.io)
+- [Practical React Query](https://tkdodo.eu/blog/practical-react-query?ref=jonas.io) (A huge series from one of React Query's maintainers. Started in 2020, but is still going, and still very helpful)
+- [React Query meets React Router](https://tkdodo.eu/blog/react-query-meets-react-router?ref=jonas.io) (From the same series as above)
+- [Picking the right React component pattern](https://www.benmvp.com/blog/picking-right-react-component-pattern/?ref=jonas.io)
+- [Bulletproof-react: A simple, scalable, and powerful architecture for building production-ready React applications](https://github.com/alan2207/bulletproof-react?ref=jonas.io) (GitHub repository)
+
+Library documentation:
+
+- [Tailwind CSS: Installation With Vite](https://tailwindcss.com/docs/guides/vite?ref=jonas.io)
+- [styled-components](https://styled-components.com/docs?ref=jonas.io)
+- [Supabase Javascript Client Library](https://supabase.com/docs/reference/javascript/installing?ref=jonas.io)
+- [TanStack (React) Query v4](https://tanstack.com/query/v4/docs/react/overview?ref=jonas.io)
+- [Recharts](https://recharts.org/en-US/examples?ref=jonas.io)
+- [date-fns](https://date-fns.org/docs/Getting-Started/?ref=jonas.io)
