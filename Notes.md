@@ -345,3 +345,16 @@ The middleware is in between the dispatch, and before the action reaches the red
 Nice for async code, API calls, for side effects
 
 Redux Thunk for API calls is the most used 3rd library.
+
+### Redux Toolkit
+
+It is more modern and preferred way of writing Redux code.
+It is an opiniated approach, forcing to use Redux best practices.
+100% compatible with "calssic" Redux, allowing to be used together.
+Allows is to write a lot less code to achieve the same result (less "boilerplate").
+
+Gives 3 big things (but much more too):
+
+1. we can write code that "mutates" state inside reducers (will be converted to immutable logic behind the scenes by "Immer" library)
+1. Action creators are automaticallt created
+1. Automatic setup of thunk middleware and DevTools.
