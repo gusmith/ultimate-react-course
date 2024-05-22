@@ -25,6 +25,8 @@ Most inetersting one is the `rfc` one creating the default component function us
 
 React Developer Tools
 
+Redux dev tools plugin
+
 ## Links
 
 Here are some resources that you might find helpful while studying this Part 1.
@@ -335,3 +337,11 @@ Redux is for UI global states, not remote states.
 Mechanism of Redux: difference with useReducer: a store, and the store will have multiple reducers, and an action creator (which is optional but common for Redux applications).
 
 ![Mechanism of Redux](./images/ReduxMechanism.png)
+
+### Redux middleware
+
+Cannot do async operations in store and reducers need to be pure functions.
+The middleware is in between the dispatch, and before the action reaches the reducer.
+Nice for async code, API calls, for side effects
+
+Redux Thunk for API calls is the most used 3rd library.
