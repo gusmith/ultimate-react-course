@@ -9,6 +9,7 @@ Plugin list:
 - One Monokai (colour scheme)
 - Material Icon Theme
 - Auto Rename Tag
+- tailwindcss
 
 Settings:
 
@@ -420,3 +421,28 @@ Just a rough overview, in real-world, it is never that linear.
 1. Divide the application into **feature categories**
    - think about **state management + data flow**
 1. Decide on what **libraries** to use (technology decision)
+
+## Tailwindcss
+
+### Good
+
+- Don't have to worry about naming classes
+- no jumping between files to write markup and styles
+- immediately undesdratdn styling in any project that uses tailwind
+- design system: many design decisions have been taken for you, which makes UIs look better and more consistent
+- saves a lot of time, e.g. on responsive design
+- docs and VS Code integration are great
+
+### Bad
+
+- markup (HTML or JSX) looks very unreadable, with lots of class names (you get used to it)
+- you have to learn a lot of class names (but after a day of usage you know the fundamentals)
+- you need to install and set up tailwind on each new project (10-15 minutes every time)
+- you're giving up on "vanilla CSS"...
+
+### Installation
+
+Go in the tailwindcss website, and check how to install for the framework used.
+The base styles are defined in the [preflight](https://tailwindcss.com/docs/preflight) page.
+
+Use also https://github.com/tailwindlabs/prettier-plugin-tailwindcss to re-order the classnames.
