@@ -365,7 +365,7 @@ Gives 3 big things (but much more too):
 | ---------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------- |
 | 👍 built into react                                                                                  | 👎 requires additional pacakage (large bundle)                                      |
 | 👍 easy to setup                                                                                     | 👎 more work to setup initially                                                     |
-| 👎 additional state "slide" requires new context **set up from scratch** ("provider hell" in App.js) | 👍 once set up, it's easy to create additional state "slices"                       |
+| 👎 additional state "slice" requires new context **set up from scratch** ("provider hell" in App.js) | 👍 once set up, it's easy to create additional state "slices"                       |
 | 👎 no mechanism for async operations (should not be used fort remote states)                         | 👍 supports middleware for async operations (should not be used fort remote states) |
 | 👎 performance optimization is a pain                                                                | 👍 performance is optimized out of the box                                          |
 | 👎 only react dev tools                                                                              | 👍 excellent dev tools                                                              |
@@ -407,3 +407,16 @@ Library documentation:
 - [TanStack (React) Query v4](https://tanstack.com/query/v4/docs/react/overview?ref=jonas.io)
 - [Recharts](https://recharts.org/en-US/examples?ref=jonas.io)
 - [date-fns](https://date-fns.org/docs/Getting-Started/?ref=jonas.io)
+
+## How to plan and build a large and real world react application
+
+Just a rough overview, in real-world, it is never that linear.
+
+1. Gather application **requirements and features**
+1. Divide trhe application into **pages**
+   - think about the **overall** and **page-level** UI
+   - break the desired UI into **components**
+   - design and build a **static** version (no state yet)
+1. Divide the application into **feature categories**
+   - think about **state management + data flow**
+1. Decide on what **libraries** to use (technology decision)
