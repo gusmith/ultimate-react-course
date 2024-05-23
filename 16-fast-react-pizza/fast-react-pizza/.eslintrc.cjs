@@ -18,5 +18,9 @@ module.exports = {
       { allowConstantExport: true },
     ],
     "react/prop-types": [1, { skipUndeclared: true }],
+    "react-refresh/only-export-components": [
+      "warn",
+      { allowExportNames: ["meta", "links", "headers", "loader", "action"] },
+    ],
   },
 };
