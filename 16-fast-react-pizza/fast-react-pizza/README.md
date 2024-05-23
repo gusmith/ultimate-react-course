@@ -55,3 +55,12 @@ Just one possible stack. The author prefers React Query than react router for re
 - styling -> tailwindcss
 - remote state management -> react router (new way of fteching data right inside React router (v6.4+)). Note really state management as it does not persist state
 - UI state manegement -> Redux as state is fairly complex, and also to practice
+
+## Code structure
+
+- `features` folder for everyting related to the features
+- `ui` for all UI generic and re-usable components
+- `services` for re-usable code interacting with the API
+- `utils` for all re-usable stateless helper functions, without side effects
+
+We could also have a `contexts` folder, `pages`...
