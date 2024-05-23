@@ -17,6 +17,6 @@ module.exports = {
       "warn",
       { allowConstantExport: true },
     ],
-    "react/prop-types": ["warn", { skipUndeclared: true }],
+    "react/prop-types": [1, { skipUndeclared: true }],
   },
 };
