@@ -19,6 +19,10 @@ const cartSlice = createSlice({
   reducers: {
     addItem(state, action) {
       // payload = newItem
+      if (
+        state.cart.map((item) => item.pizzaId).includes(action.payload.pizzaId)
+      )
+        return;
       state.cart.push(action.payload);
     },
     deleteItem(state, action) {
