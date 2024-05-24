@@ -446,3 +446,7 @@ Go in the tailwindcss website, and check how to install for the framework used.
 The base styles are defined in the [preflight](https://tailwindcss.com/docs/preflight) page.
 
 Use also https://github.com/tailwindlabs/prettier-plugin-tailwindcss to re-order the classnames.
+
+### Usage
+
+Using responsive designs with `sm:...`
