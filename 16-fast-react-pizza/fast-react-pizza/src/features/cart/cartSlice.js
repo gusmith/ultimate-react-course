@@ -42,9 +42,8 @@ const cartSlice = createSlice({
       const item = state.cart.find((item) => item.pizzaId === action.payload);
       if (!item) return;
       if (item.quantity === 1) {
-        state.cart = state.cart.filter(
-          (item) => item.pizzaId !== action.payload,
-        );
+        // trick to use the other reducers from inside a reducer
+        cartSlice.caseReducers.deleteItem(state, action);
         return;
       }
       if (item.quantity > 0) {
