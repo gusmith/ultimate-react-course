@@ -69,6 +69,11 @@ export const {
 export default cartSlice.reducer;
 
 //To optimise redux selector, check `reselect` library.
+
+export function getCart(state) {
+  return state.cart.cart;
+}
+
 export function getTotalCartQuantity(state) {
   return state.cart.cart.reduce((sum, item) => (sum += item.quantity), 0);
 }
