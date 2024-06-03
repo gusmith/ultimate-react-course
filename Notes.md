@@ -10,6 +10,7 @@ Plugin list:
 - Material Icon Theme
 - Auto Rename Tag
 - tailwindcss
+- vscode-styled-components -> to use `styled-components`
 
 Settings:
 
