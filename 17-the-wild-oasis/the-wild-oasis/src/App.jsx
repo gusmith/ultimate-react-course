@@ -2,13 +2,7 @@ import styled from "styled-components";
 import GlobalStyles from "./styles/GlobalStyles";
 import Button from "./ui/Button";
 import Input from "./ui/Input";
-
-// It is a component, so with uppercase, under the hood, it creates a random named css class, and uses it.
-const H1 = styled.h1`
-  font-size: 30px;
-  font-weight: 600;
-  background-color: yellow;
-`;
+import Heading from "./ui/Heading";
 
 // This name is a convention
 const StyledApp = styled.main`
@@ -22,10 +16,12 @@ export default function App() {
       {/* Global styles is a sibling of the other components and get used globally */}
       <GlobalStyles />
       <StyledApp>
-        <H1>The Wild Oasis</H1>
+        <Heading type="h1">The Wild Oasis</Heading>
+        <Heading type="h2">Check in and out</Heading>
         <Button onClick={() => alert("Check in")}>Check in</Button>
         <Button onClick={() => alert("Check out")}>Check out</Button>
-
+        {/* The props `as` also tell styled-components to use the html tag defined in the `as` */}
+        <Heading as="h3">Form</Heading>
         <Input type="number" placeholder="Number of guests" />
       </StyledApp>
     </>
