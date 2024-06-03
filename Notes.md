@@ -450,3 +450,92 @@ Use also https://github.com/tailwindlabs/prettier-plugin-tailwindcss to re-order
 ### Usage
 
 Using responsive designs with `sm:...`
+
+### Section 25 - biggest project
+
+#### Project
+
+Wild oasis
+
+- small boutique hotel with 8 luxurious wooden cabins
+- need custom built application to manage everything about the hotel: bookings, cabins, and guests
+- internal application used inside the hotel to check in guests as they arrive
+- they have nothing right now, so they also need the API
+- later they will probably want a customer facing website as well, where customers will be able to book stays using the same API
+
+#### How to plan a react application
+
+1. Gather application requirements and features
+1. Divide the application into pages
+1. Divide the application into feature categories
+1. Decide iobn what libraries to use (tech stack)
+
+#### Project requirements
+
+- users of the app are hotel employees. Logged in to perform tasks
+- new users can only be signed up inside the application (to ensure only hotel employees can get accounts)
+- users should be able to upload an avatar, and change name and password
+- table to view all cabins, showing a cabin photo, name, capacity, price, and current discount
+- users should be able to update or delete a cabin, and to create new cabins (including uploading a photo)
+- app needs a table to view all bookings, showing arrival and departure dates, status, and paid amount, as well as cabin and guest data
+- the booking status can be "unconfirmed" (booked but not yet checked in), "checking in", or "checked out". The table should be filterable by this important status.
+- Other booking data includes: nb guests, nb nights, guest observations, whether they booked breakfast, breakfast price
+- users should be able to delete, check in, or check out a booking as guest arrives (no edititing necessary for now)
+- bookings may not have been paid yet on guest arrival. Therefore, on check in, users need to accept payment (outside the app) and then confirm that payment has been received (inside the app)
+- on check in, the guest should have the ability to add breakfast for the entire stay, of they hadn't already
+- guest data should contain: full name, email, national ID, nationality, and a country flag for easy identification
+- the initial app screen should be a dashboard, to display important information for the last 7, 30 or 90 days:
+  - a list of guests checking in and out on the current day. Users should be able to perform these tasks from here
+  - statistics on recent bookings, sales, check ins, and occupancy rate
+  - a chart showing all daily hotel sales, showing both "total" sales and "extra" sales (only breakfast at the moment)
+  - a chart showing statistcis on stay durations, as this is an important metric for the hotel
+- users should be able to define a few application-wide settings: breakfast price, min and max nights/booking, max guests/booking
+- app needs a dark mode
+
+#### Features to necessary pages
+
+1. Authentication
+   - User sign up -> `/users`
+   - login -> `/login`
+   - account settings -> `/account`
+1. Cabins
+   - cabins -> `/cabins`
+1. Bookings
+   - bookings -> `/bookings`
+1. Check in/out
+   - Booking check in -> `/checkin/:bookingID`
+1. Guests
+1. Dashboard
+1. Settings
+   - app settings -> `/settings`
+
+And a dashboard page (including data from all the other features)-> `/dashboard`
+
+#### Tech
+
+Client side rendering (CSR) or server-side rendering (SSR)?
+
+CSR with plain react:
+
+- used to build sinle page applications (SPAs)
+- all html is rendered on the client
+- all javascript needs to be downloaded before apps start running: bad for performance
+- one perfect use case: apps that are used "internally" as tools inside companies, that are entirely hidden behing a login
+
+SS with framework (e.g. Next.js o Remix):
+
+- used to build multi-page applications (MPAs)
+- some html is rendered in the server
+- more performant as less JS needs to be downloaded
+- the react team is moving more and more in this direction
+
+We will go with CSR as just internal
+
+Tech stack:
+
+- routing -> `react router`
+- styling -> `styled components` (very popular of writing component scoped CSS, right inside javascript. A tech worth learning)
+- remote state management -> `React query` (the best way of managing remote state, with features like caching, automatic re-fecting, pre-fetching, offline support, etc. Alternatives are SWR and RTK query, but this is the most popular)
+- UI state management -> `Context API` (there is almost no UI state needed in this app, so one simple context with useState will be nough. Ne need for redux)
+- form management -> `react hook form` (handling bigger forms can be a lot of work, such as manual state creation, and error handling. A library can simplify all this.)
+- other tools -> `react icons`, `react hot toast`, `recharts`, `date-fns`, `supabase`
