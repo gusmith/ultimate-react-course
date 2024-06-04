@@ -564,3 +564,18 @@ There will be one table for each state "slice" in the db
 
 Bookings are about guest renting a cabin
 Tables are joined using foreign keys.
+
+## React Query
+
+Powerful library for remote states (favorite of the teacher).
+
+Many cool features:
+
+- data is stored in a cache
+- automatic loading and error states
+- automatic re-fecting to keep state synched
+- pre-fetching (e.g. pagination)
+- easy remote state mutation (updating)
+- offline support
+
+Needed because remote states is fundamentally different from regular UI states.
