@@ -540,3 +540,27 @@ Tech stack:
 - UI state management -> `Context API` (there is almost no UI state needed in this app, so one simple context with useState will be nough. Ne need for redux)
 - form management -> `react hook form` (handling bigger forms can be a lot of work, such as manual state creation, and error handling. A library can simplify all this.)
 - other tools -> `react icons`, `react hot toast`, `recharts`, `date-fns`, `supabase`
+
+### Section 25 - Supabase
+
+- Service that allows devlopers to easily create a back-end with a Postgres db
+- automatically creates a db and API so we can easily request and receive data from the server
+- no back-end dev needed
+- perfect to get up and running quickly
+- not just an API: Supabase also comes with easy-to-use user authentication and file storage
+
+#### Model the application state in tables
+
+State "domains"/"slices" needed (for features on the right):
+
+- bookings -> bookings, dashboard, check in and out
+- cabins -> cabings
+- guests -> guests
+- settings -> app settings
+- users -> Authentication
+
+All will be global remote state, stored within Supabase.
+There will be one table for each state "slice" in the db
+
+Bookings are about guest renting a cabin
+Tables are joined using foreign keys.
