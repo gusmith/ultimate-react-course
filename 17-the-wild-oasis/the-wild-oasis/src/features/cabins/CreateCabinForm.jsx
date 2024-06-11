@@ -8,32 +8,32 @@ import Textarea from "../../ui/Textarea";
 import FormRow from "../../ui/FormRow";
 
 import { useCreateCabin } from "./useCreateCabin";
-import { useEditCabin } from "./useEditCabin";
+import { useUpdateCabin } from "./useUpdateCabin";
 
 function CreateCabinForm({ cabinToEdit = {} }) {
-  const { id: editId, ...editValues } = cabinToEdit;
-  const isEditSession = Boolean(editId);
+  const { id: updateId, ...updateValues } = cabinToEdit;
+  const isUpdateSession = Boolean(updateId);
 
   // With react-hook-form, no need to use internal states.
   // getValues enable us to get all the current values in the form
   const { register, handleSubmit, reset, formState } = useForm({
-    defaultValues: isEditSession ? editValues : {},
+    defaultValues: isUpdateSession ? updateValues : {},
   });
 
   // Get the errors from the form state
   const { errors } = formState;
 
   const { isCreating, createCabin } = useCreateCabin();
-  const { isEditing, editCabin } = useEditCabin();
+  const { isUpdating, updateCabin } = useUpdateCabin();
 
-  const isWorking = isCreating || isEditing;
+  const isWorking = isCreating || isUpdating;
 
   function onSubmit(data) {
     console.log(data.image);
     const image = typeof data.image === "string" ? data.image : data.image[0];
-    if (isEditSession) {
-      editCabin(
-        { newCabinData: { ...data, image }, id: editId },
+    if (isUpdateSession) {
+      updateCabin(
+        { newCabinData: { ...data, image }, id: updateId },
         {
           onSuccess: (_data) => {
             console.log(_data);
@@ -143,7 +143,7 @@ function CreateCabinForm({ cabinToEdit = {} }) {
           accept="image/*"
           disabled={isWorking}
           {...register("image", {
-            required: isEditSession ? false : "This field is required",
+            required: isUpdateSession ? false : "This field is required",
           })}
         />
       </FormRow>
@@ -154,7 +154,7 @@ function CreateCabinForm({ cabinToEdit = {} }) {
           Cancel
         </Button>
         <Button disabled={isWorking}>
-          {isEditSession ? "Edit cabin" : "Create new cabin"}
+          {isUpdateSession ? "Edit cabin" : "Create new cabin"}
         </Button>
       </FormRow>
     </Form>
