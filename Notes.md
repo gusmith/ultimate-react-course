@@ -579,3 +579,62 @@ Many cool features:
 - offline support
 
 Needed because remote states is fundamentally different from regular UI states.
+
+## New expert React dev patterns
+
+### Render props pattern
+
+To re-use UI and stateful logic (logic with UI attached to it)
+Complete control over what the component renders, by passing in a function that tells the component what to render. Was more common before hooks, but still useful.
+
+In a nusthell, provide a `render` props which is a function returning some jsx, and can be used in the component to select how some piece of the components would be rendered.
+
+### Higher-order components (HOC) pattern
+
+It is useful when we try to add functionalities to a component given to us by otehr libraries.
+
+In a nutshell, you create a function named `with...` which take a component class as input, then this function returns a new component function taking the component class props we try to enrich.
+
+```javascript
+export default function withToggles(WrappedComponent) {
+  return function List(props) {
+    const [isOpen, setIsOpen] = useState(true);
+    const [isCollapsed, setIsCollapsed] = useState(false);
+
+    const displayItems = isCollapsed ? props.items.slice(0, 3) : props.items;
+
+    function toggleOpen() {
+      setIsOpen((isOpen) => !isOpen);
+      setIsCollapsed(false);
+    }
+
+    return (
+      <div className="list-container">
+        <div className="heading">
+          <h2>{props.title}</h2>
+          <button onClick={toggleOpen}>
+            {isOpen ? <span>&or;</span> : <span>&and;</span>}
+          </button>
+        </div>
+        {isOpen && <WrappedComponent {...props} items={displayItems} />}
+
+        <button onClick={() => setIsCollapsed((isCollapsed) => !isCollapsed)}>
+          {isCollapsed ? `Show all ${props.items.length}` : "Show less"}
+        </button>
+      </div>
+    );
+  };
+}
+```
+
+It is then called elsewhere:
+
+```javascript
+const ProductListWithToggles = withToggles(ProductList);
+```
+
+You can finally use this `ProductListWithToggles` component with the usual props of the `ProductList` but it now has the extra functionality.
+
+### Compound component pattern
+
+For very self-contained components that need/want to manage their own state. Compound components are like fancy super-components
