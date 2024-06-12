@@ -1,7 +1,6 @@
 import { HiXMark } from "react-icons/hi2";
 import styled from "styled-components";
 import { createPortal } from "react-dom";
-import { cloneElement, createContext, useContext, useState } from "react";
 
 const StyledModal = styled.div`
   position: fixed;
@@ -52,53 +51,19 @@ const Button = styled.button`
   }
 `;
 
-const ModalContext = createContext();
-
-export default function Modal({ children }) {
-  const [openName, setOpenName] = useState("");
-
-  function close() {
-    setOpenName("");
-  }
-
-  function open(name) {
-    setOpenName(name);
-  }
-
-  return (
-    <ModalContext.Provider value={{ openName, close, open }}>
-      {children}
-    </ModalContext.Provider>
-  );
-}
-
-function Open({ children, opens: opensWindowName }) {
-  const { open } = useContext(ModalContext);
-
-  // clone the element and add a props to it
-  return cloneElement(children, { onClick: () => open(opensWindowName) });
-}
-
-function Window({ children, name }) {
-  const { openName, close } = useContext(ModalContext);
-
-  if (name !== openName) return null;
-
+export default function Modal({ children, onClose }) {
   // createPortal enable us to move this component in the DOM to the place we want. It does not change the react component tree (and thus enabling pasing props).
   // portal can be necessary for the overflow css in some parents elements.
   return createPortal(
     <Overlay>
       <StyledModal>
-        <Button onClick={close}>
+        <Button onClick={onClose}>
           <HiXMark />
         </Button>
 
-        <div>{cloneElement(children, { onCloseModal: close })}</div>
+        <div>{children}</div>
       </StyledModal>
     </Overlay>,
     document.body
   );
 }
-
-Modal.Open = Open;
-Modal.Window = Window;
