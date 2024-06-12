@@ -1,7 +1,15 @@
 import { HiXMark } from "react-icons/hi2";
 import styled from "styled-components";
 import { createPortal } from "react-dom";
-import { cloneElement, createContext, useContext, useState } from "react";
+import {
+  cloneElement,
+  createContext,
+  useContext,
+  useEffect,
+  useRef,
+  useState,
+} from "react";
+import { useOutisdeClick } from "../hooks/useOutsideClick";
 
 const StyledModal = styled.div`
   position: fixed;
@@ -82,13 +90,15 @@ function Open({ children, opens: opensWindowName }) {
 function Window({ children, name }) {
   const { openName, close } = useContext(ModalContext);
 
+  const ref = useOutisdeClick(close);
+
   if (name !== openName) return null;
 
-  // createPortal enable us to move this component in the DOM to the place we want. It does not change the react component tree (and thus enabling pasing props).
+  // createPortal enable us to move this component in the DOM to the place we want. It does not change the react component tree (and thus enabling passing props).
   // portal can be necessary for the overflow css in some parents elements.
   return createPortal(
     <Overlay>
-      <StyledModal>
+      <StyledModal ref={ref}>
         <Button onClick={close}>
           <HiXMark />
         </Button>
