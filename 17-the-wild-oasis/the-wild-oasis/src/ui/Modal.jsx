@@ -1,4 +1,6 @@
+import { HiXMark } from "react-icons/hi2";
 import styled from "styled-components";
+import { createPortal } from "react-dom";
 
 const StyledModal = styled.div`
   position: fixed;
@@ -48,3 +50,20 @@ const Button = styled.button`
     color: var(--color-grey-500);
   }
 `;
+
+export default function Modal({ children, onClose }) {
+  // createPortal enable us to move this component in the DOM to the place we want. It does not change the react component tree (and thus enabling pasing props).
+  // portal can be necessary for the overflow css in some parents elements.
+  return createPortal(
+    <Overlay>
+      <StyledModal>
+        <Button onClick={onClose}>
+          <HiXMark />
+        </Button>
+
+        <div>{children}</div>
+      </StyledModal>
+    </Overlay>,
+    document.body
+  );
+}
