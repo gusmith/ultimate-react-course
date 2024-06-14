@@ -1,9 +1,12 @@
-import { useQuery } from "@tanstack/react-query";
+import { useQuery, useQueryClient } from "@tanstack/react-query";
 import { getBookings } from "../../services/apiBookings";
 import { useSearchParams } from "react-router-dom";
+import { PAGE_SIZE } from "../../utils/constants";
+import { useEffect } from "react";
 
 export function useBookings() {
-  const [searchParams] = useSearchParams();
+  const queryClient = useQueryClient();
+  const [searchParams, setSearchParams] = useSearchParams();
 
   // FILTER
   const filterValue = searchParams.get("status");
@@ -19,8 +22,8 @@ export function useBookings() {
 
   // PAGINATION
   const page = !searchParams.get("page") ? 1 : Number(searchParams.get("page"));
-  console.log(page);
 
+  // QUERY
   const {
     isLoading,
     data: { data: bookings, count } = {},
@@ -29,6 +32,22 @@ export function useBookings() {
     queryKey: ["bookings", filter, sortBy, page], // Uniquely identify the query
     queryFn: () => getBookings({ filter, sortBy, page }), // function for querying, must return a promise
   });
+
+  useEffect(() => {
+    if (bookings?.length === 0 && count > 0) {
+      // In this case, we are not on the right page, we are way too far, out of bound. Going to the first page.
+      searchParams.set("page", 1);
+      setSearchParams(searchParams);
+    }
+  }, [bookings, count, searchParams, setSearchParams]);
+
+  // PRE FETCHING
+  const pageCount = Math.ceil(count / PAGE_SIZE);
+  if (page < pageCount)
+    queryClient.prefetchQuery({
+      queryKey: ["bookings", filter, sortBy, page + 1],
+      queryFn: () => getBookings({ filter, sortBy, page: page + 1 }),
+    });
 
   return { isLoading, bookings, error, count };
 }

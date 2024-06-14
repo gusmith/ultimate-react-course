@@ -2,13 +2,10 @@ import { PAGE_SIZE } from "../utils/constants";
 import { getToday } from "../utils/helpers";
 import supabase from "./supabase";
 
-export async function getBookings({ filter, sortBy, page }) {
+function buildGetBookingsQuery(selectStatement, filter, sortBy) {
   let query = supabase
     .from("bookings")
-    .select(
-      "id, created_at, startDate, endDate, numNights, numGuests, status, totalPrice, cabins(name), guests(fullName, email)",
-      { count: "exact" }
-    );
+    .select(selectStatement, { count: "exact" });
 
   // FILTER
   if (filter) query = query[filter.method](filter.field, filter.value);
@@ -18,6 +15,15 @@ export async function getBookings({ filter, sortBy, page }) {
     query = query.order(sortBy.field, {
       ascending: sortBy.direction === "asc",
     });
+  return query;
+}
+
+export async function getBookings({ filter, sortBy, page }) {
+  let query = buildGetBookingsQuery(
+    "id, created_at, startDate, endDate, numNights, numGuests, status, totalPrice, cabins(name), guests(fullName, email)",
+    filter,
+    sortBy
+  );
 
   // PAGINATION
   if (page) {
@@ -29,6 +35,22 @@ export async function getBookings({ filter, sortBy, page }) {
   const { data, error, count } = await query;
   if (error) {
     console.error(error);
+    if (error?.code === "PGRST103") {
+      console.log(
+        "The page index is too far... come back to a normal value please."
+      );
+      // At that point, we just want to retrieve the count value as the offset is too high
+      const { error: _error, count: _count } = await buildGetBookingsQuery(
+        "*",
+        filter,
+        sortBy
+      );
+      if (_error) {
+        console.error(_error);
+        throw new Error("Bookings could not be loaded.");
+      }
+      return { data: [], count: _count };
+    }
     throw new Error("Bookings could not be loaded.");
   }
 
