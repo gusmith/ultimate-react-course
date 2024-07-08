@@ -91,6 +91,8 @@ function Toggle({ id }) {
   const { openId, close, open, setPosition } = useContext(MenusContext);
 
   function handleClick(e) {
+    // Stope the propagation of the event in the dom.
+    e.stopPropagation();
     // Get the position of the button rectangle the user clicked on to open the menu.
     const rect = e.target.closest("button").getBoundingClientRect();
     // Note that the menu will move when scrolling, but changing that would be too hard now, so not in plan for this course.
@@ -111,7 +113,7 @@ function Toggle({ id }) {
 
 function List({ id, children }) {
   const { openId, position, close } = useContext(MenusContext);
-  const ref = useOutisdeClick(close);
+  const ref = useOutisdeClick(close, false);
 
   if (openId !== id) return null;
 
