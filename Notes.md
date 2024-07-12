@@ -656,3 +656,9 @@ Framework/library documentation:
 - [Next.js documentation](https://nextjs.org/docs)
 - [React Server Components documentation](https://react.dev/reference/rsc/server-components) (check out this whole section on the React docs)
 - [Auth.js documentation](https://authjs.dev/getting-started)
+
+## Hydration
+
+Hydration adds back the interactivity and event handlers that were lost when the HTML was server-side rendered.
+Watering the "dry" HTML with the "water" of interactivity and event handlers.
+React builds the component tree on the client and compares it with the actual SSRd DOM: they must be the same so React can adopt it!
