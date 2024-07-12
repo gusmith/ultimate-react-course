@@ -1,3 +1,9 @@
+const { readFileSync } = require("fs");
+const { createServer } = require("http");
+const { parse } = require("url");
+const { renderToString } = require("react-dom/server");
+const React = require("react");
+
 const pizzas = [
   {
     name: "Focaccia",
@@ -57,3 +63,23 @@ function MenuItem({ pizza }) {
     </li>
   );
 }
+
+const htmlTemplate = readFileSync(`${__dirname}/index.html`, "utf-8");
+
+const server = createServer((req, res) => {
+  const pathName = parse(req.url, true).pathname;
+
+  if (pathName === "/") {
+    const renderedReact = renderToString(<Home />);
+    const html = htmlTemplate.replace("%%%CONTENT%%%", renderedReact);
+
+    res.writeHead(200, { "Content-type": "text/html" });
+    res.end(html);
+  } else if (pathName === "/test") {
+    res.end("TEST");
+  } else {
+    res.end("The URL cannot be found");
+  }
+});
+
+server.listen(8000, () => console.log("Listening for requests on port 8000"));
