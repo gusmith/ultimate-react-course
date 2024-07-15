@@ -662,3 +662,13 @@ Framework/library documentation:
 Hydration adds back the interactivity and event handlers that were lost when the HTML was server-side rendered.
 Watering the "dry" HTML with the "water" of interactivity and event handlers.
 React builds the component tree on the client and compares it with the actual SSRd DOM: they must be the same so React can adopt it!
+
+## React server components (RSC)
+
+Full stack architecture for React Apps.
+
+Server as an integral part of the React component trees: _server components_. They are only rendered on the server. No interactivity, no state, no JS. Allow to build back-end with React.
+
+Client components -> regular components (using states)
+
+RSC is NOT actiove by default. It needs to be implemented by a framework (e.g. Next.js with the App router)
