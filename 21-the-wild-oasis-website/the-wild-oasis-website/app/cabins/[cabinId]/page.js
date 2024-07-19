@@ -1,7 +1,7 @@
 import Image from "next/image";
 import { EyeSlashIcon, MapPinIcon, UsersIcon } from "@heroicons/react/24/solid";
 
-import { getCabin } from "@/app/_lib/data-service";
+import { getCabin, getCabins } from "@/app/_lib/data-service";
 
 // export const metadata = {
 //   title: "Cabin",
@@ -14,6 +14,14 @@ export async function generateMetadata({ params }) {
   return {
     title: `Cabin ${name}`,
   };
+}
+
+// Make this page static despite having a variable parameter path for all the id provided.
+export async function generateStaticParams() {
+  const cabins = await getCabins();
+  return cabins.map((cabin) => ({
+    cabinId: String(cabin.id),
+  }));
 }
 
 export default async function Page({ params }) {
