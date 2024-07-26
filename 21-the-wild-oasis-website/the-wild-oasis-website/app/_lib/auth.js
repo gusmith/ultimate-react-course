@@ -8,6 +8,12 @@ const authConfig = {
       clientSecret: process.env.AUTH_GITHUB_SECRET,
     }),
   ],
+  callbacks: {
+    authorized({ auth, request }) {
+      // Trick returning a boolean if the key exists
+      return !!auth?.user;
+    },
+  },
 };
 
 export const {
