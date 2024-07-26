@@ -12,7 +12,7 @@ const authConfig = {
   callbacks: {
     authorized({ auth, request }) {
       // Trick returning a boolean if the key exists
-      return !!auth?.user;
+      return !!auth?.user?.email;
     },
     async signIn({ user, account, profile }) {
       try {
