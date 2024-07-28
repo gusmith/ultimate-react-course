@@ -1,6 +1,8 @@
 "use server";
 // server actions
 
+import { revalidatePath } from "next/cache";
+
 import { auth, signIn, signOut } from "@/app/_lib/auth";
 import { supabase } from "@/app/_lib/supabase";
 
@@ -35,4 +37,6 @@ export async function updateGuest(formData) {
   if (error) {
     throw new Error("Guest could not be updated");
   }
+
+  revalidatePath("/account/profile");
 }
