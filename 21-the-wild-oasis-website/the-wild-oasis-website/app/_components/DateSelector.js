@@ -1,6 +1,11 @@
 "use client";
 
-import { differenceInDays, isWithinInterval } from "date-fns";
+import {
+  differenceInDays,
+  isPast,
+  isSameDay,
+  isWithinInterval,
+} from "date-fns";
 import { DayPicker } from "react-day-picker";
 import "react-day-picker/dist/style.css";
 
@@ -19,10 +24,15 @@ function isAlreadyBooked(range, datesArr) {
 function DateSelector({ settings, cabin, bookedDates }) {
   const { range, setRange, resetRange } = useReservation();
 
+  const displayRange = isAlreadyBooked(range, bookedDates) ? {} : range;
+
   const { regularPrice, discount } = cabin;
-  const cabinPrice = regularPrice - discount;
+  const discountedPrice = regularPrice - discount;
   const numNights =
-    range.from && range.to ? differenceInDays(range.to, range.from) : 0;
+    displayRange.from && displayRange.to
+      ? differenceInDays(displayRange.to, displayRange.from)
+      : 0;
+  const cabinPrice = numNights * discountedPrice;
 
   // SETTINGS
   const { minBookingLength, maxBookingLength } = settings;
@@ -35,7 +45,7 @@ function DateSelector({ settings, cabin, bookedDates }) {
         onSelect={(ra) => {
           ra === undefined ? resetRange() : setRange(ra);
         }}
-        selected={range}
+        selected={displayRange}
         min={minBookingLength + 1}
         max={maxBookingLength}
         fromMonth={new Date()}
@@ -43,6 +53,10 @@ function DateSelector({ settings, cabin, bookedDates }) {
         toYear={new Date().getFullYear() + 5}
         captionLayout="dropdown"
         numberOfMonths={2}
+        disabled={(curDate) =>
+          isPast(curDate) ||
+          bookedDates.some((date) => isSameDay(date, curDate))
+        }
       />
 
       <div className="flex items-center justify-between px-8 bg-accent-500 text-primary-800 h-[72px]">
@@ -50,7 +64,7 @@ function DateSelector({ settings, cabin, bookedDates }) {
           <p className="flex gap-2 items-baseline">
             {discount > 0 ? (
               <>
-                <span className="text-2xl">${cabinPrice}</span>
+                <span className="text-2xl">${discountedPrice}</span>
                 <span className="line-through font-semibold text-primary-700">
                   ${regularPrice}
                 </span>
