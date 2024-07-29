@@ -2,10 +2,12 @@
 // server actions
 
 import { revalidatePath } from "next/cache";
+import { redirect } from "next/navigation";
 
 import { auth, signIn, signOut } from "@/app/_lib/auth";
 import { supabase } from "@/app/_lib/supabase";
-import { getBookings } from "./data-service";
+import { getBooking, getBookings } from "@/app/_lib/data-service";
+import { isPast } from "date-fns";
 
 const VALIDNATIONALIDREGEX = /^[a-zA-Z0-9]{6,12}$/;
 
@@ -62,4 +64,37 @@ export async function deleteReservation(bookingId) {
     throw new Error("Booking could not be deleted");
   }
   revalidatePath("/account/reservations");
+}
+
+export async function editReservation(formData) {
+  const session = await auth();
+  if (!session) throw new Error("You must be logged in");
+
+  const numGuests = formData.get("numGuests");
+  const observations = formData.get("observations");
+  const bookingId = formData.get("bookingId");
+
+  // Assert that the booking is owned by the current user
+  const booking = await getBooking(bookingId);
+  if (booking.guestId !== session.user.guestId) {
+    throw new Error("You are not allowed to edit this booking");
+  }
+
+  // Assert that the booking is not in the past
+  if (isPast(booking.startDate)) {
+    throw new Error("You can't edit a booking that has already started");
+  }
+
+  const updatedFields = { numGuests, observations };
+
+  const { error } = await supabase
+    .from("bookings")
+    .update(updatedFields)
+    .eq("id", bookingId);
+
+  if (error) {
+    console.error(error);
+    throw new Error("Booking could not be updated");
+  }
+  redirect("/account/reservations");
 }
