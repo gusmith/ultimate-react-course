@@ -44,7 +44,7 @@ export async function updateGuest(formData) {
   revalidatePath("/account/profile");
 }
 
-export async function deleteReservation(bookingId) {
+export async function deleteBooking(bookingId) {
   const session = await auth();
   if (!session) throw new Error("You must be logged in");
 
@@ -66,7 +66,7 @@ export async function deleteReservation(bookingId) {
   revalidatePath("/account/reservations");
 }
 
-export async function editReservation(formData) {
+export async function editBooking(formData) {
   const session = await auth();
   if (!session) throw new Error("You must be logged in");
 
@@ -102,4 +102,33 @@ export async function editReservation(formData) {
   revalidatePath("/account/reservations");
   revalidatePath(`/account/reservations/edit/${bookingId}`);
   redirect("/account/reservations");
+}
+
+export async function createBooking(bookingData, formData) {
+  const session = await auth();
+  if (!session) throw new Error("You must be logged in");
+
+  // We should assert that the selected dates are free, but we won't implement it in this demonstration application
+
+  const newBooking = {
+    ...bookingData,
+    guestId: session.user.guestId,
+    numGuests: Number(formData.get("numGuests")),
+    observations: formData.get("observations").slice(0, 1000),
+    extrasPrice: 0,
+    totalPrice: bookingData.cabinPrice,
+    isPaid: false,
+    hasBreakfast: false,
+    status: "unconfirmed",
+  };
+
+  const { error } = await supabase.from("bookings").insert([newBooking]);
+
+  if (error) {
+    console.error(error);
+    throw new Error("Booking could not be created");
+  }
+
+  revalidatePath(`/cabins/${bookingData.cabinId}`);
+  redirect("/cabins/thankyou");
 }

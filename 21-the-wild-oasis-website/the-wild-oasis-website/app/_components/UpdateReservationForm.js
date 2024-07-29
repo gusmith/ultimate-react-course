@@ -1,11 +1,11 @@
-import { editReservation } from "@/app/_lib/actions";
+import { editBooking } from "@/app/_lib/actions";
 import SubmitButton from "@/app/_components/SubmitButton";
 
 export default function UpdateReservationForm({ maxCapacity, booking }) {
   const { numGuests, observations } = booking;
   return (
     <form
-      action={editReservation}
+      action={editBooking}
       className="bg-primary-900 py-8 px-12 text-lg flex gap-6 flex-col"
     >
       <div className="space-y-2">
