@@ -2,11 +2,10 @@
 
 import { TrashIcon } from "@heroicons/react/24/solid";
 
-import { deleteReservation } from "@/app/_lib/actions";
 import { useTransition } from "react";
-import SpinnerMini from "./SpinnerMini";
+import SpinnerMini from "@/app/_components/SpinnerMini";
 
-function DeleteReservation({ bookingId }) {
+function DeleteReservation({ bookingId, onDelete }) {
   // One way of creating a server action in a server component
   // function deleteReservation() {
   //   "use server";
@@ -19,7 +18,7 @@ function DeleteReservation({ bookingId }) {
   function handleDelete() {
     if (confirm("Are you sure you want to delete this resevation?")) {
       startTransition(() => {
-        deleteReservation(bookingId);
+        onDelete(bookingId);
       });
     }
   }
