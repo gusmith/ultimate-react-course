@@ -70,9 +70,9 @@ export async function editReservation(formData) {
   const session = await auth();
   if (!session) throw new Error("You must be logged in");
 
-  const numGuests = formData.get("numGuests");
-  const observations = formData.get("observations");
-  const bookingId = formData.get("bookingId");
+  const numGuests = Number(formData.get("numGuests"));
+  const observations = formData.get("observations").slice(0, 1000);
+  const bookingId = Number(formData.get("bookingId"));
 
   // Assert that the booking is owned by the current user
   const booking = await getBooking(bookingId);
@@ -85,7 +85,10 @@ export async function editReservation(formData) {
     throw new Error("You can't edit a booking that has already started");
   }
 
-  const updatedFields = { numGuests, observations };
+  const updatedFields = {
+    numGuests,
+    observations,
+  };
 
   const { error } = await supabase
     .from("bookings")
@@ -96,5 +99,7 @@ export async function editReservation(formData) {
     console.error(error);
     throw new Error("Booking could not be updated");
   }
+  revalidatePath("/account/reservations");
+  revalidatePath(`/account/reservations/edit/${bookingId}`);
   redirect("/account/reservations");
 }
