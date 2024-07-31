@@ -5,7 +5,7 @@ import Head from "next/head";
 // Statically generated page. Use getServerProps for dynamic page rendered on the server
 export async function getStaticProps() {
   const cabins = await getCabins();
-  return { props: { cabins } };
+  return { props: { cabins }, revalidate: 3600 };
 }
 
 export default function Cabins({ cabins }) {
