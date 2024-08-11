@@ -1,7 +1,7 @@
 name: Wake up Supabase daily for the Wild Oasis application
 on:
   schedule:
-    -cron: "5 1 * * *"
+    - cron: "5 1 * * *"
 jobs:
   wake-up-supabase:
     runs-on: ubuntu-latest
