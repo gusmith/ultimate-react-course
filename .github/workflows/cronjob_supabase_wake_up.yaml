@@ -1,0 +1,9 @@
+name: Wake up Supabase daily for the Wild Oasis application
+on:
+  schedule:
+    -cron: "5 1 * * *"
+jobs:
+  wake-up-supabase:
+    runs-on: ubuntu-latest
+    steps:
+      - run: curl https://gusmith-wild-oasis.vercel.app/cabins/34
