@@ -9,6 +9,7 @@ export default function Page() {
       <Image
         src={bg}
         fill
+        sizes="100vw"
         placeholder="blur"
         quality={80}
         className="object-cover object-top"

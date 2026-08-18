@@ -4,8 +4,8 @@ import { getBooking, getCabin } from "@/app/_lib/data-service";
 
 export default async function Page({ params }) {
   const session = await auth();
+  const { reservationId } = await params;
 
-  const reservationId = params.reservationId;
   const booking = await getBooking(reservationId);
 
   if (booking.guestId !== session.user.guestId) {

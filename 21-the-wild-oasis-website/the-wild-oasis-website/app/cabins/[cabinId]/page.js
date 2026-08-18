@@ -9,7 +9,7 @@ import { Suspense } from "react";
 // };
 
 export async function generateMetadata({ params }) {
-  const { cabinId } = params;
+  const { cabinId } = await params;
   const cabin = await getCabin(cabinId);
 
   const { name } = cabin;
@@ -27,7 +27,7 @@ export async function generateStaticParams() {
 }
 
 export default async function Page({ params }) {
-  const { cabinId } = params;
+  const { cabinId } = await params;
 
   const cabin = await getCabin(cabinId);
 

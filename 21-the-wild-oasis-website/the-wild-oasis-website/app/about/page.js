@@ -9,9 +9,6 @@ export const metadata = {
   title: "About",
 };
 
-// Refecth the data once a day (in seconds)
-export const revalidate = 60 * 60 * 24;
-
 export default async function Page() {
   const nbCabins = (await getCabins()).length;
 
