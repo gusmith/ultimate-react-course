@@ -140,10 +140,45 @@ export async function getSettings() {
 
 export async function getCountries() {
   try {
-    const res = await fetch(
-      "https://restcountries.com/v2/all?fields=name,flag"
-    );
-    const countries = await res.json();
+    const baseUrl = "https://api.restcountries.com/countries/v5";
+    const countries = [];
+    const token = process.env.RESTCOUNTRIES_KEY;
+    const headers = token
+      ? {
+          Authorization: `Bearer ${token}`,
+          Accept: "application/json",
+        }
+      : { Accept: "application/json" };
+
+    let offset = 0;
+
+    while (true) {
+      const url = `${baseUrl}?offset=${offset}&limit=25&response_fields=names.common,flag.emoji`;
+      const res = await fetch(url, { headers });
+      const payload = await res.json();
+
+      const pageCountries = Array.isArray(payload)
+        ? payload
+        : Array.isArray(payload?.data?.objects)
+          ? payload.data.objects
+          : [];
+
+      countries.push(
+        ...pageCountries.map((country) => ({
+          name: country?.names?.common ?? country?.name ?? "",
+          flag: country?.flag?.emoji ?? country?.flag ?? "",
+        }))
+      );
+
+      const meta = payload?.data?.meta ?? {};
+      const count = Number(meta.count ?? pageCountries.length ?? 0);
+      const nextOffset = Number(meta.offset ?? offset) + count;
+      const hasMore = Boolean(meta.more);
+
+      if (!hasMore || count === 0 || nextOffset === offset) break;
+      offset = nextOffset;
+    }
+
     return countries;
   } catch {
     throw new Error("Could not fetch countries");

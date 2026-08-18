@@ -5,15 +5,13 @@ import Spinner from "@/app/_components/Spinner";
 import Filter from "@/app/_components/Filter";
 import ReservationReminder from "@/app/_components/ReservationReminder";
 
-// Refecth data every hour, in seconds - does not apply anymore since we have the searchParams which makes it dynamic
-export const revalidate = 3600;
-
 export const metadata = {
   title: "Cabins",
 };
 
-export default function Page({ searchParams }) {
-  const filter = searchParams?.capacity ?? "all";
+export default async function Page({ searchParams }) {
+  const params = await searchParams;
+  const filter = params?.capacity ?? "all";
 
   return (
     <div>

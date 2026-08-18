@@ -8,17 +8,19 @@ export default function Cabin({ cabin }) {
 
   return (
     <div className="grid grid-cols-[3fr_4fr] gap-20 border border-primary-800 py-3 px-10 mb-24">
-      <div className="relative scale-[1.15] -translate-x-3">
+      <div className="relative h-[28rem] overflow-hidden">
         <Image
           src={image}
           fill
+          loading="eager"
+          sizes="(max-width: 1280px) 40vw, 33vw"
           className="object-cover"
           alt={`Cabin ${name}`}
         />
       </div>
 
-      <div>
-        <h3 className="text-accent-100 font-black text-7xl mb-5 translate-x-[-254px] bg-primary-950 p-6 pb-1 w-[150%]">
+      <div className="relative">
+        <h3 className="text-accent-100 font-black text-6xl md:text-7xl mb-5 bg-primary-950 p-6 pb-1 w-[120%] -translate-x-8 relative z-10">
           Cabin {name}
         </h3>
 

@@ -1,6 +1,4 @@
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
+@import "tailwindcss";
 
 @layer components {
   .spinner {
@@ -8,8 +6,8 @@
     width: 60px;
     aspect-ratio: 1;
     border-radius: 50%;
-    border: 8px solid theme("colors.primary.900");
-    border-right-color: theme("colors.primary.200");
+    border: 8px solid #1b2631;
+    border-right-color: #b7c7d7;
     animation: rotate 1s infinite linear;
   }
 
@@ -18,7 +16,7 @@
     width: 20px;
     aspect-ratio: 1;
     border-radius: 50%;
-    border: 2px solid theme("colors.primary.200");
+    border: 2px solid #b7c7d7;
     border-right-color: transparent;
     animation: rotate 1s infinite linear;
   }
@@ -33,7 +31,7 @@
 /* For data picker */
 .rdp {
   --rdp-cell-size: 32px !important;
-  --rdp-accent-color: theme("colors.accent.500") !important;
-  --rdp-background-color: theme("colors.accent.600") !important;
+  --rdp-accent-color: #c69963 !important;
+  --rdp-background-color: #b78343 !important;
   margin: 0 !important;
 }
