@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { useNavigate } from "react-router-dom/dist";
+import { useNavigate } from "react-router-dom";
 
 export default function SearchOrder() {
   const [query, setQuery] = useState("");

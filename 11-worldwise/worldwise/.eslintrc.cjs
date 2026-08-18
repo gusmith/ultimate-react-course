@@ -6,7 +6,7 @@ module.exports = {
     "plugin:react/recommended",
     "plugin:react/jsx-runtime",
     "plugin:react-hooks/recommended",
-    "react",
+    "plugin:react-refresh/recommended",
     "prettier",
   ],
   ignorePatterns: ["dist", ".eslintrc.cjs"],
@@ -18,7 +18,7 @@ module.exports = {
       presets: ["@babel/preset-env", "@babel/preset-react"],
     },
   },
-  settings: { react: { version: "18.2" } },
+  settings: { react: { version: "detect" } },
   plugins: ["react-refresh"],
   rules: {
     "react-refresh/only-export-components": [

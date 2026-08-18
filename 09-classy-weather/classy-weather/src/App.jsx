@@ -36,7 +36,7 @@ class App extends React.Component {
   state = {
     location: "",
     isLoading: false,
-    displayLoacation: "",
+    displayLocation: "",
     weather: {},
   };
 
@@ -60,7 +60,7 @@ class App extends React.Component {
       const { latitude, longitude, timezone, name, country_code } =
         geoData.results.at(0);
       this.setState({
-        displayLoacation: `${name} ${convertToFlag(country_code)}`,
+        displayLocation: `${name} ${convertToFlag(country_code)}`,
       });
       // 2) Getting actual weather
       const weatherRes = await fetch(
@@ -105,7 +105,7 @@ class App extends React.Component {
         {this.state.weather.weathercode && (
           <Weather
             weather={this.state.weather}
-            location={this.state.location}
+            location={this.state.displayLocation || this.state.location}
           />
         )}
       </div>

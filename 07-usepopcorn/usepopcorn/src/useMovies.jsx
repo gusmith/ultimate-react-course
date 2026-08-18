@@ -14,11 +14,11 @@ export function useMovies(query) {
           setError("");
           setIsLoading(true);
           const res = await fetch(
-            `https://www.omdbapi.com/?apikey=${process.env.REACT_APP_OMDB_API_KEY}&s=${query}`,
+            `https://www.omdbapi.com/?apikey=${import.meta.env.VITE_OMDB_API_KEY}&s=${query}`,
             { signal: controller.signal }
           );
           if (!res.ok) {
-            throw new Error("Somtheing went wrong with fethcing movies.");
+            throw new Error("Something went wrong with fetching movies.");
           }
 
           const data = await res.json();
