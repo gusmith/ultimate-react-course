@@ -29,7 +29,7 @@ export default function App() {
         try {
           setIsLoading(true);
           const res = await fetch(
-            `https://api.frankfurter.app/latest?amount=${input}&from=${from}&to=${to}`,
+            `https://api.frankfurter.dev/v1/latest?amount=${input}&from=${from}&to=${to}`,
             { signal: abort.signal }
           );
           const data = await res.json();
